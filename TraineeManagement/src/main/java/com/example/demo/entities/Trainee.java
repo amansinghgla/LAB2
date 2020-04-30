@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import javax.persistence.Table;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -71,6 +72,13 @@ public class Trainee {
 
 public Trainee() {
 	super();
+}
+
+
+@Override
+public String toString() {
+	return "Trainee [traineeid=" + traineeid + ", traineename=" + traineename + ", traineedomain=" + traineedomain
+			+ ", traineelocation=" + traineelocation + "]";
 }
 	
 	

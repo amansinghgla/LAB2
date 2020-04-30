@@ -5,48 +5,52 @@ package com.example.demo.service;
 
 
 
+import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.TraineeDao;
 import com.example.demo.entities.Trainee;
-import com.example.demo.interfaces.*;
-import com.example.demo.interfaces.TraineeServiceInterface;
+
+
 
 
 @Service
 @Transactional
-public class TraineeService implements TraineeServiceInterface {
+public class TraineeService {
 
 	@Autowired
-	private TraineeDaoInterafce td;
+	private TraineeDao traineeDao;
+
+	public Trainee addtrainee(Trainee trainee) {
+
+		return traineeDao.save(trainee);
+
+	}
 	
-	@Override
-	public Trainee addtrainee(Trainee t) {
-		
-		boolean result=td.addtrainee(t);
-		
-		if(result)
-		{
-			return t;
+	public List<Trainee> retrieve(){
+		List<Trainee> trainees = new ArrayList<Trainee>();
+		for(Trainee trainee : traineeDao.findAll()) {
+			trainees.add(trainee);
 		}
-		else
-			return null;
+		
+		return trainees;
+	}
+
+	public void deletetrainee(int traineeid) {
+
+		traineeDao.deleteById(traineeid);
 	}
 	
-	@Override
-	public List<Trainee> retrieve() {
-		
-		return td.retrieve();
+	public Trainee edittrainee (int traineeid) {
+		return traineeDao.getOne(traineeid);
 	}
 	
-	@Override
-	public void delete(int traineeid) {
-		
-		td.deletetrainee(traineeid);
-	}
 
 }
