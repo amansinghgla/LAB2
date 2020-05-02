@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import javax.persistence.Table;
 
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,7 +12,7 @@ import javax.persistence.Column;;
 
 
 @Entity
-@Table(name= "trainee")
+@Table(name= "trainee_details")
 
 public class Trainee {
 	
